@@ -3,12 +3,9 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import { ThemeToggle } from "./theme-toggle";
-import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const pathname = usePathname();
 
   const scrollToSection = (id: string) => {
     setIsOpen(false);
@@ -42,12 +39,10 @@ export default function Navbar() {
               {link.label}
             </button>
           ))}
-          <ThemeToggle />
         </div>
 
         {/* Mobile Menu Button */}
         <div className="md:hidden flex items-center gap-4">
-          <ThemeToggle />
           <button onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? (
               <X className="w-6 h-6" />
