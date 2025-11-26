@@ -18,8 +18,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" className="dark"> {/* force dark mode */}
+      <body className="antialiased bg-slate-900 text-slate-100">
         <Navbar />
         {children}
         <Footer />
