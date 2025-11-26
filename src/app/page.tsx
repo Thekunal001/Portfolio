@@ -9,160 +9,126 @@ export default function Home() {
     element?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: "easeOut" },
-    },
-  };
-
-  const titleVariants = {
-    hidden: { opacity: 0, scale: 0.5 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.8, ease: "easeOut" },
-    },
-  };
-
-  const subtitleVariants = {
-    hidden: { opacity: 0, x: -50 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 0.8, delay: 0.2 },
-    },
-  };
-
-  const floatingVariants = {
-    animate: {
-      y: [0, -20, 0],
-      transition: {
-        duration: 3,
-        repeat: Infinity,
-        ease: "easeInOut",
-      },
-    },
-  };
-
-  const pulseVariants = {
-    animate: {
-      scale: [1, 1.05, 1],
-      boxShadow: [
-        "0 0 0 0 rgba(59, 130, 246, 0.7)",
-        "0 0 0 10px rgba(59, 130, 246, 0)",
-      ],
-      transition: {
-        duration: 2,
-        repeat: Infinity,
-      },
-    },
-  };
-
-  const textVariants = {
-    hidden: { opacity: 0 },
-    visible: (i: number) => ({
-      opacity: 1,
-      transition: {
-        delay: i * 0.05,
-      },
-    }),
-  };
-
-  const words = ["QA Automation", "Engineer"];
-
   return (
     <main className="bg-white dark:bg-slate-950">
       {/* Hero */}
-      <section id="hero" className="min-h-screen bg-gradient-to-br from-blue-50 to-slate-100 dark:from-slate-900 dark:to-slate-950 flex items-center justify-center px-4 pt-20 overflow-hidden">
-        <motion.div
-          className="text-center max-w-4xl"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          {/* Animated Avatar */}
+      <section id="hero" className="min-h-screen bg-slate-900 flex items-center justify-center px-4 pt-20 overflow-hidden relative">
+        
+        {/* 3D Grid Background - Subtle Diagonal */}
+        <div className="absolute inset-0 overflow-hidden bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900">
+          {/* Animated Diagonal Grid */}
           <motion.div
-            variants={floatingVariants}
-            animate="animate"
+            animate={{ 
+              backgroundPosition: ["0px 0px", "50px 50px"]
+            }}
+            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `
+                linear-gradient(45deg, transparent 24%, rgba(59, 130, 246, 0.08) 25%, rgba(59, 130, 246, 0.08) 26%, transparent 27%, transparent 74%, rgba(59, 130, 246, 0.08) 75%, rgba(59, 130, 246, 0.08) 76%, transparent 77%, transparent),
+                linear-gradient(-45deg, transparent 24%, rgba(59, 130, 246, 0.08) 25%, rgba(59, 130, 246, 0.08) 26%, transparent 27%, transparent 74%, rgba(59, 130, 246, 0.08) 75%, rgba(59, 130, 246, 0.08) 76%, transparent 77%, transparent)
+              `,
+              backgroundSize: "70px 70px",
+              backgroundPosition: "0px 0px"
+            }}
+          />
+
+          {/* Subtle Glow */}
+          <div className="absolute inset-0" style={{
+            background: "radial-gradient(ellipse at 50% 50%, rgba(59, 130, 246, 0.05) 0%, transparent 60%)"
+          }} />
+
+          {/* Vignette Effect */}
+          <div className="absolute inset-0" style={{
+            background: "radial-gradient(ellipse at center, transparent 0%, rgba(15, 23, 42, 0.4) 100%)"
+          }} />
+        </div>
+
+        {/* Content */}
+        <motion.div
+          className="text-center max-w-4xl relative z-10"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          {/* Floating Avatar */}
+          <motion.div
+            animate={{ y: [0, -20, 0] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
             className="flex justify-center mb-8"
           >
             <motion.div
-              variants={pulseVariants}
-              animate="animate"
+              animate={{
+                scale: [1, 1.05, 1],
+                boxShadow: [
+                  "0 0 0 0 rgba(59, 130, 246, 0.7)",
+                  "0 0 0 10px rgba(59, 130, 246, 0)",
+                ],
+              }}
+              transition={{ duration: 2, repeat: Infinity }}
               className="w-24 h-24 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-4xl font-bold text-white shadow-lg"
             >
               KS
             </motion.div>
           </motion.div>
 
-          {/* Main Title with scale animation */}
+          {/* Name */}
           <motion.h1
-            variants={titleVariants}
-            className="text-6xl md:text-7xl font-bold text-slate-900 dark:text-white mb-6"
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            className="text-6xl md:text-7xl font-bold text-slate-900 dark:text-white mb-4"
           >
             Kunal Singla
           </motion.h1>
 
-          {/* Animated Subtitle with typing effect */}
+          {/* Designation with Animated Text */}
           <motion.div
-            variants={subtitleVariants}
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-6 min-h-[60px]"
           >
             <motion.div className="text-3xl md:text-4xl font-bold">
               <span className="text-blue-600 dark:text-blue-400">
-                {words.map((word, wordIndex) => (
-                  <motion.span key={wordIndex}>
-                    {word.split("").map((char, charIndex) => (
-                      <motion.span
-                        key={charIndex}
-                        variants={textVariants}
-                        initial="hidden"
-                        animate="visible"
-                        custom={wordIndex * 15 + charIndex}
-                      >
-                        {char}
-                      </motion.span>
-                    ))}
-                    {wordIndex < words.length - 1 && " "}
+                {"QA Automation Engineer".split("").map((char, idx) => (
+                  <motion.span
+                    key={idx}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: idx * 0.02 }}
+                  >
+                    {char}
                   </motion.span>
                 ))}
+
               </span>
             </motion.div>
           </motion.div>
 
-          {/* Description with fade-in */}
+          {/* Description */}
           <motion.p
-            variants={itemVariants}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
             className="text-lg md:text-xl text-slate-700 dark:text-slate-300 mb-8 leading-relaxed max-w-2xl mx-auto"
           >
             🚀 Delivering reliable systems with automation, precision, and quality at scale
           </motion.p>
 
-          {/* Animated tech stack badges */}
+          {/* Tech Stack */}
           <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
             className="flex justify-center gap-3 flex-wrap mb-8"
           >
             {["Python", "Selenium", "Playwright", "Jest"].map((tech, idx) => (
               <motion.span
                 key={tech}
-                variants={itemVariants}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 + idx * 0.1 }}
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 className="px-4 py-2 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 rounded-full text-sm font-semibold"
               >
@@ -173,13 +139,12 @@ export default function Home() {
 
           {/* CTA Buttons */}
           <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <motion.button
-              variants={itemVariants}
               whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(59, 130, 246, 0.3)" }}
               whileTap={{ scale: 0.95 }}
               onClick={() => scrollToSection("projects")}
@@ -188,8 +153,7 @@ export default function Home() {
               View Projects
             </motion.button>
             <motion.button
-              variants={itemVariants}
-              whileHover={{ scale: 1.05, backgroundColor: "rgba(59, 130, 246, 0.1)" }}
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => scrollToSection("contact")}
               className="border-2 border-blue-600 text-blue-600 dark:border-blue-400 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-slate-800 px-8 py-3 rounded-lg font-semibold transition-all"
@@ -198,25 +162,15 @@ export default function Home() {
             </motion.button>
           </motion.div>
 
-          {/* Scroll indicator animation */}
+          {/* Scroll Indicator */}
           <motion.div
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
             className="mt-12 text-center"
           >
             <p className="text-slate-500 dark:text-slate-400 mb-2">Scroll to explore</p>
-            <svg
-              className="w-6 h-6 mx-auto text-blue-600 dark:text-blue-400"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19 14l-7 7m0 0l-7-7m7 7V3"
-              />
+            <svg className="w-6 h-6 mx-auto text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>
           </motion.div>
         </motion.div>
@@ -262,29 +216,27 @@ export default function Home() {
             Professional Experience
           </motion.h2>
           <div className="space-y-6">
-            {[
-              {
-                role: "QA Automation Engineer",
-                company: "Catalogus",
-                period: "Jan 2025 – Present",
-                desc: "Lead end-to-end QA initiatives, author test plans, build automation suites with Python/Selenium/Playwright, establish Jenkins CI pipelines",
-                tech: ["Python", "Selenium", "Playwright", "Jenkins"],
-              },
-              {
-                role: "QA Automation Engineer",
-                company: "Inuvest Technologies",
-                period: "Jan 2023 – Dec 2024",
-                desc: "Designed test cases, automated workflows, performed sanity/regression/E2E testing, reported bugs with detailed steps",
-                tech: ["Python", "Selenium", "Pytest", "JIRA"],
-              },
-              {
-                role: "QA Engineer",
-                company: "GoMechanic",
-                period: "Sept 2022 – Jan 2023",
-                desc: "Manual testing, test case design, sanity and regression testing cycles, quality assurance across releases",
-                tech: ["Manual Testing", "JIRA", "Postman"],
-              },
-            ].map((exp, idx) => (
+            {[{
+              role: "QA Automation Engineer",
+              company: "Catalogus",
+              period: "Jan 2025 – Present",
+              desc: "Lead end-to-end QA initiatives, author test plans, build automation suites with Python/Selenium/Playwright, establish Jenkins CI pipelines",
+              tech: ["Python", "Selenium", "Playwright", "Jenkins"],
+            },
+            {
+              role: "QA Automation Engineer",
+              company: "Inuvest Technologies",
+              period: "Jan 2023 – Dec 2024",
+              desc: "Designed test cases, automated workflows, performed sanity/regression/E2E testing, reported bugs with detailed steps",
+              tech: ["Python", "Selenium", "Pytest", "JIRA"],
+            },
+            {
+              role: "QA Engineer",
+              company: "GoMechanic",
+              period: "Sept 2022 – Jan 2023",
+              desc: "Manual testing, test case design, sanity and regression testing cycles, quality assurance across releases",
+              tech: ["Manual Testing", "JIRA", "Postman"],
+            }].map((exp, idx) => (
               <motion.div
                 key={idx}
                 initial={{ opacity: 0, x: -20 }}
@@ -329,14 +281,14 @@ export default function Home() {
           </motion.h2>
           <div className="grid md:grid-cols-2 gap-6">
             {[
-              { title: "Languages", items: ["Python", "JavaScript", "SQL"] },
-              { title: "Automation", items: ["Selenium", "Playwright", "Pytest"] },
+              { title: "Programming Languages", items: ["Python", "JavaScript", "Java"] },
+              { title: "Test Automation", items: ["Selenium", "Playwright", "Jest", "Pytest"] },
               { title: "API Testing", items: ["Postman", "Requests", "REST APIs"] },
               { title: "DevOps", items: ["Jenkins", "Git", "GitHub", "JIRA"] },
               { title: "Tools", items: ["VS Code", "PyCharm", "Docker"] },
               { title: "Testing Types", items: ["E2E", "Regression", "Sanity", "Security"] },
             ].map((skill, idx) => (
-              <motion.div
+               <motion.div
                 key={idx}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -372,6 +324,7 @@ export default function Home() {
           </motion.h2>
           <div className="grid md:grid-cols-2 gap-6">
             {[
+
               { title: "E-Commerce Automation", desc: "End-to-end test automation with Selenium & Playwright", tech: ["Selenium", "Python", "Pytest"] },
               { title: "API Testing Framework", desc: "REST API testing with Postman & security validation", tech: ["Postman", "Python", "OWASP"] },
               { title: "Mobile App QA", desc: "Cross-platform mobile automation testing", tech: ["Playwright", "Mobile", "Testing"] },
