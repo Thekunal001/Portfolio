@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Github, ExternalLink } from "lucide-react";
+import { Github, ExternalLink, CalendarDays } from "lucide-react";
 
 export default function Home() {
   const scrollToSection = (id: string) => {
@@ -219,21 +219,21 @@ export default function Home() {
             {[{
               role: "QA Automation Engineer",
               company: "Catalogus",
-              period: "Jan 2025 – Present",
+              period: "Jan 2025 - Present",
               desc: "Lead end-to-end QA initiatives, author test plans, build automation suites with Python/Selenium/Playwright, establish Jenkins CI pipelines",
               tech: ["Python", "Selenium", "Playwright", "Jenkins"],
             },
             {
               role: "QA Automation Engineer",
               company: "Inuvest Technologies",
-              period: "Jan 2023 – Dec 2024",
+              period: "Jan 2023 - Dec 2024",
               desc: "Designed test cases, automated workflows, performed sanity/regression/E2E testing, reported bugs with detailed steps",
               tech: ["Python", "Selenium", "Pytest", "JIRA"],
             },
             {
               role: "QA Engineer",
               company: "GoMechanic",
-              period: "Sept 2022 – Jan 2023",
+              period: "Sept 2022 - Jan 2023",
               desc: "Manual testing, test case design, sanity and regression testing cycles, quality assurance across releases",
               tech: ["Manual Testing", "JIRA", "Postman"],
             }].map((exp, idx) => (
@@ -243,21 +243,26 @@ export default function Home() {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ delay: idx * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white dark:bg-slate-800 p-6 rounded-lg border-l-4 border-blue-600 shadow-md"
+                className="relative overflow-hidden bg-white dark:bg-slate-800/80 p-6 rounded-xl border border-slate-200/70 dark:border-slate-700 shadow-lg"
               >
-                <div className="flex justify-between mb-2">
-                  <div>
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-white">{exp.role}</h3>
-                    <p className="text-blue-600 dark:text-blue-400 font-semibold">{exp.company}</p>
+                <div className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-blue-500/50 via-purple-500/50 to-blue-500/50" />
+                <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+                  <div className="flex items-start gap-4">
+                    <div className="h-full w-1 rounded-full bg-gradient-to-b from-blue-500/80 to-purple-500/80" />
+                    <div>
+                      <h3 className="text-xl font-bold text-slate-900 dark:text-white">{exp.role}</h3>
+                      <p className="text-blue-600 dark:text-blue-400 font-semibold">{exp.company}</p>
+                    </div>
                   </div>
-                  <span className="text-sm text-slate-500 bg-slate-100 dark:bg-slate-700 px-3 py-1 rounded-full">
-                    {exp.period}
-                  </span>
+                  <div className="flex items-center gap-2 self-start rounded-full border border-blue-400/40 bg-blue-500/10 px-4 py-2 text-sm shadow-sm">
+                    <CalendarDays size={16} className="text-blue-500 dark:text-blue-200" />
+                    <span className="text-slate-700 dark:text-slate-100 font-semibold">{exp.period}</span>
+                  </div>
                 </div>
                 <p className="text-slate-700 dark:text-slate-300 mb-3">{exp.desc}</p>
                 <div className="flex flex-wrap gap-2">
                   {exp.tech.map((t) => (
-                    <span key={t} className="text-xs bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 px-2 py-1 rounded">
+                    <span key={t} className="text-xs bg-blue-100 dark:bg-blue-900/70 text-blue-700 dark:text-blue-200 px-2 py-1 rounded">
                       {t}
                     </span>
                   ))}

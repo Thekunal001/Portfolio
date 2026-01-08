@@ -6,6 +6,7 @@ import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const resumeHref = "/Resume.pdf";
 
   const scrollToSection = (id: string) => {
     setIsOpen(false);
@@ -39,6 +40,13 @@ export default function Navbar() {
               {link.label}
             </button>
           ))}
+          <a
+            href={resumeHref}
+            download
+            className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold !text-white shadow-sm transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-slate-900"
+          >
+            Download Resume
+          </a>
         </div>
 
         {/* Mobile Menu Button */}
@@ -65,6 +73,14 @@ export default function Navbar() {
               {link.label}
             </button>
           ))}
+          <a
+            href={resumeHref}
+            download
+            onClick={() => setIsOpen(false)}
+            className="block w-full rounded-lg bg-blue-600 px-4 py-3 text-center text-sm font-semibold !text-white shadow-sm transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-slate-50 dark:focus:ring-offset-slate-800"
+          >
+            Download Resume
+          </a>
         </div>
       )}
     </nav>
