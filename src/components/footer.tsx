@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
                     <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition">
                         <Github size={24} />
                     </a>
-                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition">
+                    <a href="https://www.linkedin.com/in/kunalsingla-/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition">
                         <Linkedin size={24} />
                     </a>
                     <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition">
